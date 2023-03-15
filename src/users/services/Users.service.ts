@@ -5,7 +5,6 @@ import { User } from '../interfaces/user.interface';
 import { CreateUserDto } from '../dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
 import { pick } from 'lodash';
-import { Types } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -24,23 +23,22 @@ export class UsersService {
     return usersWithSelectedProps;
   }
 
-  async findOne(id: string): Promise<User> {
-    if (!Types.ObjectId.isValid(id)) {
-      throw new Error('Invalid Object ID');
-    }
-    const existingUser = this.userModel.findById(id).exec();
+  async findOne(
+    username: string,
+  ): Promise<{ email: string; userId: string; password: string }> {
+    const existingUser = this.userModel.findById(username).exec();
     if (!existingUser) {
       throw new Error('User not found');
     }
-    const { username, email, userId } = pick(existingUser, [
-      'username',
+    const { email, userId, password } = pick(existingUser, [
       'email',
       'userId',
+      'password',
     ]);
     return {
-      username,
       email,
       userId,
+      password,
     };
   }
 
@@ -82,8 +80,8 @@ export class UsersService {
     return this.userModel.findByIdAndRemove(id).exec();
   }
 
-  async login(inputEmail: string, password: string): Promise<User> {
-    const user = await this.userModel.findOne({ email: inputEmail });
+  async login(username: string, password: string, token: string): Promise<any> {
+    const user = await this.userModel.findOne({ username: username });
 
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
@@ -95,11 +93,7 @@ export class UsersService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const { username, email, userId } = pick(user, [
-      'username',
-      'email',
-      'userId',
-    ]);
-    return { username, email, userId };
+    const { email, userId } = pick(user, ['email', 'userId']);
+    return { username, email, userId, token };
   }
 }
