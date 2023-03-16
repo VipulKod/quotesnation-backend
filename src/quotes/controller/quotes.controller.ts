@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { Quote } from '../interface/quote.interface';
 import { QuotesService } from '../services/quotes.service';
@@ -15,8 +16,11 @@ export class QuotesController {
   constructor(private readonly quoteService: QuotesService) {}
 
   @Get()
-  findAll(): Promise<Quote[]> {
-    return this.quoteService.findAll();
+  findNext(
+    @Query('offset') offset = 0,
+    @Query('limit') limit = 10,
+  ): Promise<any> {
+    return this.quoteService.getNextQuotes(offset, limit);
   }
 
   @Get(':id')

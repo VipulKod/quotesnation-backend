@@ -59,4 +59,16 @@ export class QuotesService {
     }
     await quoteToDelete;
   }
+
+  async getNextQuotes(offset: number, limit: number): Promise<any> {
+    const items = await this.quotesModel
+      .find()
+      .skip(offset)
+      .limit(limit)
+      .exec();
+    if (!items) {
+      throw new NotFoundException(`Quotes not found`);
+    }
+    return await items;
+  }
 }
