@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AuthMiddleware } from './auth/middleware/auth.middleware';
 import { QuotesModule } from './quotes/quotes.module';
+import { CorsController } from './cors.controller';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { QuotesModule } from './quotes/quotes.module';
     AuthModule,
     QuotesModule,
   ],
-  controllers: [AppController],
+  controllers: [CorsController, AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
