@@ -9,7 +9,6 @@ import {
   Query,
   UseInterceptors,
 } from '@nestjs/common';
-import { cors } from 'src/middleware/cors.middleware';
 import { Quote } from '../interface/quote.interface';
 import { QuotesService } from '../services/quotes.service';
 
@@ -17,7 +16,6 @@ import { QuotesService } from '../services/quotes.service';
 export class QuotesController {
   constructor(private readonly quoteService: QuotesService) {}
 
-  @UseInterceptors(cors)
   @Get()
   findNext(
     @Query('offset') offset = 0,
@@ -26,13 +24,11 @@ export class QuotesController {
     return this.quoteService.getNextQuotes(offset, limit);
   }
 
-  @UseInterceptors(cors)
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Quote> {
     return this.quoteService.findOne(id);
   }
 
-  @UseInterceptors(cors)
   @Post()
   create(
     @Body('quote') quote: string,
@@ -41,7 +37,6 @@ export class QuotesController {
     return this.quoteService.create(quote, author);
   }
 
-  @UseInterceptors(cors)
   @Put(':id')
   update(
     @Param('id') id: string,
@@ -51,7 +46,6 @@ export class QuotesController {
     return this.quoteService.update(id, quote, author);
   }
 
-  @UseInterceptors(cors)
   @Delete(':id')
   delete(@Param('id') id: string): void {
     this.quoteService.delete(id);
