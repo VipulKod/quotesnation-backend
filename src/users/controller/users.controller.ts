@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Param,
-  Post,
-  Req,
-  UseGuards,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthMiddleware } from 'src/auth/middleware/auth.middleware';
 import { User } from '../interfaces/user.interface';
 import { UsersService } from '../services/Users.service';
