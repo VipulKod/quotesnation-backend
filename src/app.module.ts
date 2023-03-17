@@ -13,7 +13,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AuthMiddleware } from './auth/middleware/auth.middleware';
 import { QuotesModule } from './quotes/quotes.module';
-import { CorsMiddleware } from './middleware/cors.middleware';
 
 @Module({
   imports: [
@@ -30,7 +29,7 @@ import { CorsMiddleware } from './middleware/cors.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(CorsMiddleware, AuthMiddleware)
+      .apply(AuthMiddleware)
       .forRoutes({ path: 'users', method: RequestMethod.GET });
   }
 }
