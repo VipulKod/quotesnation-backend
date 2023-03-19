@@ -1,11 +1,19 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Response, Request } from 'express';
 
 @Injectable()
-export class CorsMiddleware implements NestMiddleware {
-  use(req: any, res: any, next: () => void) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+export class CorsOptionsMiddleware implements NestMiddleware {
+  use(req: Request, res: Response, next: () => void) {
+    if (req.method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header(
+        'Access-Control-Allow-Methods',
+        'GET, POST, PUT, DELETE, OPTIONS',
+      );
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
+      res.sendStatus(200);
+    } else {
+      next();
+    }
   }
 }
