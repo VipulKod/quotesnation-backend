@@ -718,10 +718,10 @@
     webpack "5.75.0"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@^9.0.0":
-  version "9.3.9"
-  resolved "https://registry.npmjs.org/@nestjs/common/-/common-9.3.9.tgz"
-  integrity sha512-GshTD9Xz+wD2em6NyzU4NXw5IXMUmapgDgD+iuj6XL0258hvDwODmNk37mBBnZvTZlqER+krvIUKnS34etqF/A==
+"@nestjs/common@^9.3.10":
+  version "9.3.10"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-9.3.10.tgz#c137402cad41123eaf5c74c2404e92490f9bbd50"
+  integrity sha512-wj2bM9TXBlAvzgznkID0s7bN/niVn90sZIDtRFDnvaB1qagEpkWA0Bt39qilIuqdReluIaCjeEW106U0oyz+mQ==
   dependencies:
     uid "2.0.1"
     iterare "1.2.1"
@@ -1961,17 +1961,9 @@ core-util-is@~1.0.0:
   resolved "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-cors@2.8.5:
+cors@2.8.5, cors@^2.8.5:
   version "2.8.5"
   resolved "https://registry.npmjs.org/cors/-/cors-2.8.5.tgz"
-  integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
-  dependencies:
-    object-assign "^4"
-    vary "^1"
-
-cors@^2.8.5:
-  version "2.8.5"
-  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   dependencies:
     object-assign "^4"
