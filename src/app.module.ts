@@ -12,7 +12,6 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { QuotesModule } from './quotes/quotes.module';
-import { CorsMiddleware } from './middleware/cors.middleware';
 
 @Module({
   imports: [
@@ -28,8 +27,6 @@ import { CorsMiddleware } from './middleware/cors.middleware';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(CorsMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
+    consumer.apply().forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
