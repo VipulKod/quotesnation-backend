@@ -30,7 +30,7 @@ import { CorsMiddleware } from './middleware/cors.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(CorsMiddleware)
+      .apply(CorsMiddleware, AuthMiddleware)
       .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
