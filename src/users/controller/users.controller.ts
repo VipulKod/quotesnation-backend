@@ -13,7 +13,6 @@ export class UsersController {
     return this.usersService.findOne(userId);
   }
 
-  @UseGuards(AuthMiddleware)
   @Get()
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
