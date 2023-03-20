@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthMiddleware } from 'src/auth/middleware/auth.middleware';
 import { User } from '../interfaces/user.interface';
 import { UsersService } from '../services/Users.service';
@@ -18,7 +26,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Post()
+  @Put()
   async createUser(@Req() request: any): Promise<User> {
     return this.usersService.create(request?.body);
   }
